@@ -1,8 +1,8 @@
-title: Ryan's Giordano.
+title: Ryan Giordano, statistician.
 email: rgiordan@gmail.com
 description: >-
-    A place for me to write about statistical and computational ideas that I
-    find interesting.
+    This is the professional webpage and open research journal of Ryan Giordano.
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  rgiordan
@@ -16,11 +16,12 @@ plugins:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - notes/

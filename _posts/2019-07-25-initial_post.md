@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Initial experimental post"
+title:  "Why?"
 date:   2019-07-25 14:00:00 -0800
 categories: experimental
 
