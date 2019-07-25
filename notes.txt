@@ -9,6 +9,9 @@ https://jekyllrb.com/docs/structure/ # Jekyll directory structure
 https://jekyllrb.com/docs/variables/ # Jekyll variables
 https://jekyllrb.com/docs/themes/ # Gem-based themes
 
+Latex in Jekyll:
+http://www.iangoodfellow.com/blog/jekyll/markdown/tex/2016/11/07/latex-in-markdown.html
+
 Good basic github pages + jekyll tutorial:
 http://jmcglone.com/guides/github-pages/
 

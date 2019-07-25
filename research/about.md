@@ -4,15 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Ryan Giordano is currently a Statistics Postdoctoral Associate in Tamara
+Broderick’s group at MIT. Ryan received his PhD in statistics from UC Berkeley,
+where he was advised by Michael Jordan, Tamara Broderick, and Jon McAuliffe.
+Ryan has additionally earned an MSc with distinction in econometrics and
+mathematical economics from the London School of Economics and undergraduate
+degrees in mathematics and theoretical and applied mechanics from the University
+of Illinois in Urbana-Champaign. He has worked as an engineer for Google and HP
+and served as an education volunteer in the US Peace Corps in Kazakhstan. His
+research interests include variational methods, Bayesian robustness, sensitivity
+analysis, open software, and the philosophy of science.
