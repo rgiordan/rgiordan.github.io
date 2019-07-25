@@ -18,3 +18,7 @@ for Google and HP and served as an education volunteer in the US Peace Corps in
 Kazakhstan. My current research interests include variational methods, Bayesian
 robustness, sensitivity analysis, open software, and --- presumptuously --- the
 philosophy of science.
+
+---
+
+[Current Resume](/assets/giordano_resume_20190725.pdf)
