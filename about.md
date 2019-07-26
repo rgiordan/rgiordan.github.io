@@ -1,8 +1,10 @@
 ---
 layout: page
-title: About
+title: Biography, publications, and resume
 permalink: /about/
 ---
+
+# Biography
 
 <img src="/assets/images/ryan_portrait_2019.jpg" alt="drawing" width="100" align="left" hspace="10">
 
@@ -18,8 +20,14 @@ interests include variational methods, Bayesian robustness, sensitivity
 analysis, open software.  I also have an amateur interest in the philosophy of
 science.
 
+[Here is my most recent resume.](/assets/giordano_resume_20190725.pdf)
+
 ---
 
-[Current Resume](/assets/giordano_resume_20190725.pdf)
+
+# Peer-Reviewed Publications
 
 {% include_relative assets/bibliography/citations.html %}
+
+Workshop publications and working drafts can be found
+[on my arxiv page](https://arxiv.org/find/stat/1/au:+Giordano_R/0/1/0/all/0/1).
