@@ -7,5 +7,6 @@ categories: bayesian_bootstrap
 
 The following post is generated from
 [this Jupyter notebook](/assets/post_assets/bayesian_bootstrap_v1.ipynb).
+Forgive the formatting --- I'm still working out how best to post notebooks.
 
 {% include_relative bayesian_bootstrap_v1.html %}
