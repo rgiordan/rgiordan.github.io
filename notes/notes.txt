@@ -11,6 +11,7 @@ https://jekyllrb.com/docs/themes/ # Gem-based themes
 
 Latex in Jekyll:
 http://www.iangoodfellow.com/blog/jekyll/markdown/tex/2016/11/07/latex-in-markdown.html
+http://www.gastonsanchez.com/visually-enforced/opinion/2014/02/16/Mathjax-with-jekyll/
 
 Good basic github pages + jekyll tutorial:
 http://jmcglone.com/guides/github-pages/
