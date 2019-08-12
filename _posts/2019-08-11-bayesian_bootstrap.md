@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Bayesian Bootstrap is Not a Free Lunch."
+title:  "The Bayesian bootstrap is not a free lunch."
 date:   2019-08-11 14:46:00 -0800
 categories: bayesian_bootstrap
 ---
