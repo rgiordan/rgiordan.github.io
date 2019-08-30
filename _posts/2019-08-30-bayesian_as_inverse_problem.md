@@ -77,7 +77,7 @@ the observations.
 
 Of course, in practice you don’t usually generate parameters and data hoping to
 get your original dataset.  That would be incredibly computationally
-intensive, because you would very rarely generate the matches to the data you saw.
+intensive, because you would very rarely generate matches to the data you saw.
 
 Instead, you use Bayes’ rule, which gives an analytic expression for
 the posterior $$p(\theta | X)$$:
