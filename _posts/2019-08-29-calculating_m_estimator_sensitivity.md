@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A slick (but inefficient) way to calculate M-estimator sensitivity with automatic differentiation."
+title:  "A simple and clever (but inefficient) way to calculate M-estimator sensitivity with automatic differentiation."
 date:   2019-08-29 20:00:00 -0800
 categories: sensitivity
 ---
