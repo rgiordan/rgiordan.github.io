@@ -148,4 +148,4 @@ benefits come from caching, which is always complicated.
 For more details, you can see the notebook below, which is also available
 [here](/assets/post_assets/thetahat_ad.ipynb) for download.
 
-{% include_relative thetahat_ad.html %}
+{% include_relative html/_2019-08-29-calculating_m_estimator_sensitivity.html %}

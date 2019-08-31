@@ -13,4 +13,4 @@ readable alternative to `autograd`'s `flatten` function. The notebook itself
 [can be downloaded
 here](/assets/post_assets/2019-08-31-paragami_nn_example.ipynb).
 
-{% include_relative 2019-08-31-paragami_nn_example.html %}
+{% include_relative html/_2019-08-31-paragami_nn_example.html %}
