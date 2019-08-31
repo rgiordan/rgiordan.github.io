@@ -2,7 +2,7 @@
 layout: post
 title:  "A paragami version of autograd's simple neural net example."
 date:   2019-08-31 08:00:00 -0800
-categories: paragami
+categories: code
 ---
 
 In the below notebook, I make a version of [autograd's very simple neural
