@@ -46,8 +46,9 @@ good from a decision theory perspective.
 
 This whole scenario has an analogy to a classical Bayesian objection to using
 naive frequentist hypothesis tests for model selection. Suppose I asked only:
-``Should we let him cry alone for an hour?''  Let $$m = 1$$ correspond to this
-sleep training strategy.  We find that the answer to this question is ``then
-he'll probably cry so hard he pukes'', in other words, that $$p(y | m=1) p(m)$$
+"Should we let him cry alone for an hour?"  Let $$m = 1$$ correspond to this
+sleep training strategy.  We find that the answer to this question is "then
+he'll probably cry so hard he pukes", in other words, that $$p(y | m=1) p(m)$$
 is very small, and reject this strategy.  The problem, of course, is that we
-didn't consider any of the alternatives before rejecting.
+didn't consider any of the alternatives before rejecting, and that we
+would reject _every_ strategy when considered in isolation this way.
