@@ -129,7 +129,9 @@ T_{kl} :=& N
 $$
 
 so that
-$$\Delta(y | \hat\theta_1, \hat\theta_2) = T_{opt} + T_{clt} + T_{kl}$$.
+$$\Delta(y | \hat\theta_1, \hat\theta_2) = T_{opt} + T_{clt} + T_{kl}$$.  As
+I now show, in general we expect these terms to be $$O(1)$$, $$O(\sqrt{N})$$,
+and $$O(N)$$, respectively.
 
 The first term, $$T_{opt}$$, is the average difference between the log likelihood
 at the empirical optima $$\hat\theta$$ and at  the population optima
@@ -137,7 +139,8 @@ $$\bar\theta$$.  By an analysis similar to the proof of Wilke's theorem, one can
 show that $$T_{opt} = O(1)$$.
 
 The second term, $$T_{clt}$$, is $$O(\sqrt{N})$$ by a standard central limit
-theorem argument.
+theorem argument unless the variance $$V := \mathrm{Var}(\Delta(y_1 |
+\bar\theta_1, \bar\theta_2))$$ is zero.
 
 The final term, $$T_{kl}$$, is $$N$$ times the relative KL divergence of the two
 models, evaluated at the "true" optimal parameters, since
@@ -156,8 +159,11 @@ divergence to the truth.
 
 ## Discussion
 
-From this decomposition, a number of interest facts follow immediately. A
-consistency result is clearest.  If the $$\theta_1$$ model is a better fit in
+From this decomposition, a number of interest facts follow immediately.
+
+#### Consistency
+
+A consistency result is clearest.  If the $$\theta_1$$ model is a better fit in
 terms of KL divergence, then $$KL(q || p(y_1 | \bar\theta_2)) > KL(q || p(y_1 |
 \bar\theta_1))$$, and $$T_{kl} \rightarrow \infty$$ at rate $$N$$, dominating
 the other terms. Consequently, $$p(M_1 | y) \rightarrow 1$$.  Conversely, if the
@@ -165,15 +171,16 @@ $$\theta_2$$ model is a better fit, then $$T_{kl} \rightarrow - \infty$$ and
 $$p(M_1 | y) \rightarrow 0$$.  This consistency result obtains despite the
 randomness in the data, which is of smaller order.
 
+#### Berk's paradox
+
 The second consequence is Berk's paradox.  Suppose that the two models are
 equally explanatory so that $$KL(q || p(y_1 | \bar\theta_1)) = KL(q || p(y_1 |
 \bar\theta_2))$$ and, consequently, $$T_{kl} = 0$$.  In that case, the
 $$O(\sqrt{N})$$ term $$T_{clt}$$ dominates.  Since $$\frac{1}{\sqrt{N}} T_{clt}
-\rightarrow \mathcal{N}(0, V)$$ where $$V := \mathrm{Var}(\Delta(y_1 |
-\bar\theta_1, \bar\theta_2))$$, with equal prbability $$T_{clt}$$ goes to
+\rightarrow \mathcal{N}(0, V)$$, with equal prbability $$T_{clt}$$ goes to
 $$\infty$$ or $$-\infty$$ according to whether $$\frac{1}{\sqrt{N}} T_{clt}$$ is
-greater or less than $$0$$, respectively.  Correspondingly, $$p(M_1 | y)$$ goes
-to either $$1$$ or $$0$$ respectively with equal probability.
+greater or less than zero, respectively.  Correspondingly, $$p(M_1 | y)$$ goes
+to either $$1$$ or zero respectively with equal probability.
 
 In finite samples, Berk's paradox can occur with different severity depending on
 the variance $$V$$.  Specifically, if $$\ell(y_n | \theta_1)$$ and $$\ell(y_n |
@@ -187,13 +194,86 @@ models are not exactly equivalent if the KL difference $$KL(q || p(y_1 |
 \bar\theta_1)) - KL(q || p(y_1 | \bar\theta_2))$$ is of order smaller than
 $$1 / \sqrt{N}$$.
 
-Finally, one can see that frequentist hypothesis testing is not thought of as
-suffering from Berk's paradox essentially bceause it is assumed away.  Recall
-that the distribution of the likelihood ratio test is only considered when the
-two models are nested.  With nested models, under the null hypothesis that the
-two models are equal, $$\ell(y_n | \theta_1) = \ell(y_n | \theta_2)$$ almost
-surely and $$V = 0$$.  And under the null, $$T_{kl} = 0$$ (whether or not the
-models are nested). One is then left with $$O(1)$$ term, whose $$\chi^2$$
-distribution is given by Wilke's theorem.  Were one to apply the frequentist
-likelihood ratio test with non-nested models, one would also suffer from Berk's
-theorem, and one would reject exactly half the time for any finite cutoff.
+#### Frequentist testing
+
+Third, one can see clearly why the frequentsist likelihood ratio test comes with
+the restriction that the tested models be nested.  Under the null hypothesis
+that the two models are equivalent to one another, $$p(y_1 | \bar\theta_1) =
+p(y_1 | \bar\theta_2)$$ almost surely, so $$V = 0$$, and $$T_{clt}$$ is
+zero. Of course, the null equivalence of the two models implies that $$T_{kl}$$
+is zero as well. When, additionally, the two models are equivalent to
+$$q(y_1)$$, then the $$T_{opt}$$ term has a $$\chi^2$$ distribution by classical
+results (Wilke's theorem), and it is this distribution that is used to test the
+null.
+
+Were one to apply the frequentist likelihood ratio test with equivalent but
+non-nested models, then $$V$$ would not be zero, and one would also suffer from
+the phenomenon of Berk's paradox.  In particular, one would asymptotically
+reject the null exactly half the time for any finite cutoff.
+
+
+## Practical Consequences of Berk's paradox
+
+Is Berk's paradox simply an ivory tower peculiarity?  I do not think it is. On
+the contrary, I believe it illustrates a fundamental _brittleness_ of Bayesian
+pairwise model selection, particularly when we need Bayesian thinking
+most---when there is real model uncertainty, i.e., when $$p(M_1 | y)$$ is not
+near $$0$$ or $$1$$.
+
+Suppose you're a workaday Bayesian, and you want to perform a pairwise model
+comparison using Bayes' rule.  As you are instructed by your textbooks, you
+calculate $$p(M_1 | y)$$.  Suppose your models are complicated so you have no
+idea what the posterior's frequentist properties are.  Recall that you don't
+actually observe the terms $$T_{opt}$$, $$T_{clt}$$, and $$T_{kl}$$ because you
+don't know $$q$$, $$\bar\theta_1$$, or $$\bar\theta_2$$.
+
+What if $$p(M_1 | y)$$ is close to one?  You don't know whether this is the case
+because $$T_{kl}$$ or $$T_{clt}$$ has dominated.  In other words, you don't
+really know whether the models are nearly equivalent and the high confidence
+posterior is due to chance, or because the posterior is extremely confident due
+to chance.  Still, you can take some solace from the consistency result that
+even small differences in $$KL$$ divergence dominate asymptotically.
+
+What if $$p(M_1 | y)$$ is at some value that is not close to $$0$$ nor to $$1$$?
+Then you really don't know much except that the $$KL$$ divergence is probably
+small.  Either $$V$$ is very small, and the models have nearly the same
+likelihood (in which case comparing them is uninteresting), or $$V$$ is not
+small and you would, with all likelihood, not come to the same conclusion with a
+new draw from the same generating distribution.
+
+#### Sparse regression example
+
+Here's a concrete example of something I, at least, would have done wrong
+before thinking about Berk's paradox in this way.  Suppose you have a sparse
+linear model and can actually calculate or estimate the posterior probability of
+different sparsity patterns.  Denote a sparsity pattern $M_s$, for $s$ ranging
+over the power set of including or excluding regressors.  Before I was aware
+of Berk's paradox, I would have happily taken all patterns $$s$$ such that
+$$p(M_s | y)$$ was sufficintly close to $$1$$ or $$0$$ and considered those
+regressors to be confidently included or excluded.   Then I would have taken
+all the others, for which $$p(M_s | y)$$ was at some intermediate value, and
+treated them as "uncertain" for further, more careful analysis.  Unfortunately,
+as show above, this procedure will be extremely brittle to resampling the data.
+One will not pick up the same pattern of "certain" and "uncertain" regressors
+with new datasets drawn from the same generating distribution, even if the
+data actually comes from one of the specified models.  (One can verify
+with simulations that this phenomenon does in fact occur with sparse
+linear regression.)
+
+
+## Paths forward
+
+As I write this, I'm not sure what the solution is.  A careful reading
+of the proof of Theorem 4.1 in the BayesBag paper shows that they are using
+the bootstrap to estimate $$V$$ and then rescale the test statistic.  I think
+that is a good idea, though I do wonder whether the BayesBag posterior is more
+than is needed to effect this solution.
+
+I should emphasize that the above objections only apply to the attempt to choose
+one model over another, or over a group of alternative models.  Bayesian model
+averaging (BMA) does not really suffer from this problem, in that it does not
+matter for the purpose of BMA which of several nearly equivalent models you
+choose.
+
+So I currently feel a bit lost.  If you are reading this and have ideas or
+thoughts, please do reach out!
