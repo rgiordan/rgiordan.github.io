@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A statistician's guide to differential calculus of functionals."
+title:  "Introduction: A statistician's guide to functional calculus."
 date:   2020-01-27 02:00:00 -0800
 categories: functionals
 ---
@@ -24,7 +24,7 @@ far from complete. Writing these posts will be as much to refine my own
 understanding as to provide understanding to the reader.  I will surely make
 errors, and may start down some dead ends without realizing it.
 
-### Functionals
+## Functionals
 
 A "functional" is simply a map from a function to a real number.  It is, in
 other words, a function of a function, whose domain is the reals. We will at
@@ -34,7 +34,12 @@ confusingly, such exotic maps are still referred to as plain old functions.
 As such, in my opinion, the term "functional" seems a bit pretentious and
 could perhaps be discarded.
 
-Let's look at some examples.
+Here, the term "functional calculus" means taking derivatives and forming Taylor
+series approximations to functionals.  Of course, such a calculus also requires
+thinking carefully about the notions of smoothness and continuity.
+
+For the rest of this post, let's just take a look at some examples of
+functionals in statistics without examining their properties just yet.
 
 ## The evaluation functional.
 
@@ -143,7 +148,7 @@ $$\mathbb{E}\left[\frac{1}{N} \sum_{n=1}^N g^*(x_n)\right]$$.  Though I should
 mention that (as of the time of wrigin at least), I don't know much about
 applications of functional calculus to such set complexity measures.
 
-## Optimization problems.
+## Optimization problems and maximum likelihood estimators.
 
 Suppose we want to solve an optimization problem
 
@@ -155,9 +160,133 @@ As the optimization objective is a sample mean, this can also be written
 as a distribution functional:
 
 $$
-\begin{align*}
-\phi_d(F) &= \mathrm{argmin}_\theta \int \ell(\theta, x) dF(x).
-\end{align*}
+\phi_d(F) = \mathrm{argmin}_\theta \int \ell(\theta, x) dF(x).
 $$
 
 With this definition, $$\phi_d(\hat{F}) = \hat\theta$$.
+
+We might also consider the loss function itself:
+
+$$
+\phi_\ell(\ell) = \mathrm{argmin}_\theta \frac{1}{N}\sum_{n=1}^N \ell(\theta, x_n).
+$$
+
+We also might consider the effect of a regularizer:
+
+$$
+\phi_r(R) = \mathrm{argmin}_\theta \frac{1}{N}\sum_{n=1}^N \ell(\theta, x_n)
++ R(\theta),
+$$
+
+with $$\phi_r(\theta \mapsto 0) = \hat\theta$$.
+
+By considering the smoothness of $$\phi_\ell$$ and $$\phi_r$$ we can quantify
+the effect on the optimum of changing the optimization problem. For example,
+suppose we intend $$\hat\theta$$ to be a maximum likelihood estimator, in which
+case $$\ell$$ would be the negative log likelihood.  If we are worried that the
+model is misspecified, we might ask how much using a different model class would
+have changed our results.
+
+As a special case, suppose we have a generalized linear model with regressors
+$$x_n$$, responses $$y_n$$, and an inverse link function $$\gamma$$:
+
+$$
+\mathbb{E}[y_n] = \gamma(\theta^T x_n).
+$$
+
+A maximum likelihood estimator $$\hat\theta$$ would depend on the functional
+form of $$\gamma$$, say through the log likelihood $$\ell_\gamma(\theta, x_n)$$.
+We could then write
+
+$$
+\phi_\gamma(\gamma) =
+\mathrm{argmin}_\theta \frac{1}{N}\sum_{n=1}^N \ell_\gamma(\theta, x_n).
+$$
+
+Here, we might imagine restricting $$\gamma$$ to have certain properties, such
+as symmetry, unimodality, and so on.
+
+## Generic functionals of the distribution function.
+
+More general functionals of the distribution function $$F$$ provide an important
+set of use cases for functional calculus in statistics.  For example, the median
+functional can be defined as
+
+$$
+\phi_{med}(F) := \inf \left\{x: F(x) \ge \frac{1}{2}\right\}.
+$$
+
+One might analyze, for example, $$\sqrt{N}(\phi_{med}(\hat{F}) -
+\phi_{med}(F) )$$ and hope that smoothness properties of $$\phi_{med}$$
+give rise to a central limit theorem for the median.
+
+## Bayesian statistics
+
+Given a parameter $$\theta$$, data $$x$$, prior $$\pi(\theta)$$ (here with respect
+to the Lebesgue measure), and model $$p(x|\theta)$$, the Bayesian posterior
+expectation of a quantity $$g(\theta)$$ is
+
+$$
+\mathbb{E}[g(\theta) | x]
+= \frac{\int g(\theta) p(\theta | x) \pi(\theta) d\theta}
+       { \int p(\theta | x) \pi(\theta) d\theta}.
+$$
+
+Here, there are loads of functionals to be found.  Many of the
+examples we have already considered apply.  For example, we could take the
+expectation to be a functional of the model $$p(\cdot | x)$$ or $$p(\theta |
+\cdot)$$, of the true distribution, $$F$$, of the data (which would enter if
+$$x$$ contains IID data), or of the density of the data, or of the argument
+$$g$$.
+
+A special focus in the
+Bayesian literature has been given to the map from the prior density to the
+posterior expectation:
+
+$$
+\phi_{prior}(\pi) =
+\frac{\int g(\theta) p(\theta | x) \pi(\theta) d\theta}
+       { \int p(\theta | x) \pi(\theta) d\theta}.
+$$
+
+We might imagine the prior living within a parametric class or some constrained
+non-parametric class.
+We could also take other summary statistics of the posterior
+which are themselves functionals, such as the median, and write them as
+functionals of any of the above inputs, such as the prior:
+
+$$
+\phi_{med}(\pi) = \inf \left\{
+    \theta:
+    \frac{\int_{-\infty}^\theta p(\theta' | x) \pi(\theta') d\theta'}
+           { \int p(\theta' | x) \pi(\theta') d\theta'}
+            \ge \frac{1}{2}
+    \right\}.
+$$
+
+## Where next?
+
+The behavior of the functionals encompasses quite a few of the fundamental
+concerns of statistics.  Take a functional, $$\phi$$ of the distribution
+function, for example.  The asymptotic bias and variance of a statistic $$T =
+\phi(\hat{F})$$ is given by the variability of $$\phi(\hat{F})$$ around
+$$\phi(F)$$.  Predictive error can be estimated by considering the effect on
+$$\hat{F}$$ of creating a held-out set.  Examining robustness to
+misspecification of all sorts requires considering varying functional inputs to
+statistical procedures.
+
+Often in statistics, functionals can be quite complicated or expensive to
+evaluate.  To make matters worse, the set of arguments is infinite dimensional!
+Consequently, it can be very useful for both theoretical understanding and for
+computation to form local approximations to functionals, as one forms Taylor
+series approximations in ordinary calculus.  Since the underlying spaces are
+infinite dimensional, it will turn out that we have to be a bit more careful
+than in ordinary Euclidian calculus, and some intuition fails to pass over.  But
+once one is aware of these issues, one can begin to operate on functionals with
+the same mechanical confidence as with ordinary functions.
+
+The first step will be formalzing a generic conception of spaces of functions.
+In statistics, this will typically mean extending the domain of our functionals
+to more capcious spaces which include some functions which do not represent
+proper distributions.  Namely, we will be doing calculus on Banach
+spaces---which we will define and describe next time.
