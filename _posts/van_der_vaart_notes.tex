@@ -1,0 +1,159 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{babel}
+\begin{document}
+\global\long\def\expect{\mathbb{E}}%
+
+\global\long\def\plim{\underset{p}{\rightarrow}}%
+
+\global\long\def\norm#1{\left\Vert #1\right\Vert }%
+
+I have gradually come to appreciate how much insight can be found
+in Asymptotic Statistics by van der Vaart's (henceforth vdV). I have
+come to appreciate this only gradually because I have only gradually
+become able to actually read the damn thing. I am still able to read
+it only with some effort, an effort which is usually worthwhile. But
+I often wish there were some kind of Cliff's Notes for the book.
+
+In the sections that I read carefully, I fill the margins with notes
+to make things easier for myself the next time I revisit the book.
+For a few key sections I'm finding that these notes need more space
+than I have (books like Asymptotic statistics should be printed with
+bigger margins). So I thought I'd type up the points that I found
+difficult, and then I thought I might post these write-ups here in
+case someone else also finds them useful. I can't guarantee that my
+explanations are correct, since I do find this material a little difficult
+at times. And of course, my notes are not going to be adequate for
+everyone, since they are targeted to the areas where I feel personally
+shaky. But if they're useful to you I'd be glad, and if you find mistakes
+I would also be happy to hear about them.
+
+For this post I'm going to address the proof of Theorem 7.2. My real
+goal is the proof of Theorem 10.1, which I will leave for a future
+(longer) post, but which relies heavily on Theorem 7.2. I am looking
+at the Cambridge University Press 2007 edition.
+
+\subsubsection*{Definitions.}
+
+I find it really useful to have definitions written out in one place
+rather than within the text. So here are the definitions for the proof
+of Theorem 7.2:
+\begin{align*}
+I_{\theta} & :=P_{\theta}\dot{\ell}_{\theta}\dot{\ell}_{\theta}^{T}\textrm{ (covariance of the score under }\theta\mathrm{)}\\
+p_{n} & :=p_{\theta+h_{n}/\sqrt{n}}\\
+p & :=p_{\theta}\\
+g & :=h^{T}\dot{\ell}_{\theta}\\
+W_{ni} & :=2\left(\sqrt{\frac{p_{n}}{p\left(X_{i}\right)}}-1\right).
+\end{align*}
+
+Recall that van der Vaart uses the notation that, for a random variable
+$x$ distributed according to the distribution $P$, 
+\begin{align*}
+Px & =\expect_{P}\left[x\right]=\int xdP\left(x\right).
+\end{align*}
+
+
+\subsubsection*{``By continuity of the inner product...'' (third equation on page
+94). }
+
+Here, vdV is referring to the inner product between random variables
+which are measurable with respect to the dominating measure, $\mu$.
+Let $x$ and $y$ be two such variables, then the inner product is
+\begin{align*}
+\left\langle x,y\right\rangle  & :=\int xyd\mu.
+\end{align*}
+This inner product defines a Hilbert space that's referred to as $L_{2}\left(\mu\right)$
+(because $\sqrt{\left\langle x,x\right\rangle }=\sqrt{\int x^{2}d\mu}$
+is the $L_{2}$ norm of $x$ and $\mu$ is the measure with respect
+to which the inner product is taken). Any inner product is continuous
+in its arguments (using its own topology) since
+\begin{align*}
+\left\langle x+\epsilon_{n},y+\delta_{n}\right\rangle  & =\left\langle x,y\right\rangle +\left\langle \epsilon_{n},y\right\rangle +\left\langle x,\delta_{n}\right\rangle +\left\langle \epsilon_{n},\delta_{n}\right\rangle \\
+ & \le\left\langle x,y\right\rangle +\norm y_{2}\norm{\epsilon_{n}}_{2}+\norm x_{2}\norm{\delta_{n}}_{2}+\norm{\epsilon_{n}}_{2}\norm{\delta_{n}}_{2}.
+\end{align*}
+
+He is using the decomposition
+\begin{align*}
+\frac{1}{2}g\sqrt{p} & =\sqrt{n}\left(\sqrt{p_{n}}-\sqrt{p}\right)+\epsilon_{n}\\
+2\sqrt{p} & =\sqrt{p}+\sqrt{p}=\sqrt{p}+\sqrt{p_{n}}+\delta_{n},
+\end{align*}
+where $\norm{\epsilon_{n}}_{2}$ and $\norm{\delta_{n}}_{2}$ both
+go to zero in $L_{2}\left(\mu\right)$ by Eq. 7.1.
+
+\subsubsection*{Equation 7.4.}
+
+He has already shown that
+\begin{align*}
+\expect\left[\sum_{i=1}^{n}W_{ni}+\frac{1}{4}Pg^{2}\right] & =o\left(1\right).
+\end{align*}
+Additionally, recall that
+\begin{align*}
+\expect\left[\frac{1}{\sqrt{n}}\sum_{i=1}^{n}g\left(X_{i}\right)\right] & =\frac{n}{\sqrt{n}}\expect\left[g\right]=0.
+\end{align*}
+Combining gives Equation 7.4.
+
+\subsubsection*{Taylor expansion of the logarithm (top of page 95).}
+
+Recall that $W_{ni}$ are all scalars, so we only need the univariate
+Taylor expansion of $\log\left(1+z\right)$, which we will evaluate
+at $z=W_{ni}/2$ and then sum. For $\left|z\right|<1$, by the intermediate
+value theorem, for some $0\le\bar{z}\le z$ which is a function of
+$z$,
+\begin{align*}
+\log\left(1+z\right) & =z-\frac{1}{2}\frac{1}{\left(1+\bar{z}\right)^{2}}z^{2}\\
+ & =z-\frac{1}{2}z^{2}+\frac{1}{2}\left(1-\frac{1}{\left(1+\bar{z}\right)^{2}}\right)z^{2}.
+\end{align*}
+Here, he is taking $R\left(z\right)=\frac{1}{2}\left(1-\frac{1}{\left(1+\bar{z}\right)^{2}}\right)$.
+We don't know what $\bar{z}$ is, but we know that 
+\begin{align*}
+\lim_{z\rightarrow0}R\left(z\right) & =\frac{1}{2}\left(1-\frac{1}{\left(1+\lim_{z\rightarrow0}\bar{z}\right)^{2}}\right)=0,
+\end{align*}
+which is the key property we will need. It is this property that vdV
+is referring to at the end of the proof when saying ``By the property
+of the function $R$...''
+
+\subsubsection*{``It is possible to write $nW_{ni}^{2}=g^{2}\left(X_{i}\right)+A_{ni}$...''}
+
+At first this flummoxed me, since Eqs. 7.3 and 7.4 shows only convergence
+in probability of a term which is linear in $W_{ni}$, which does
+not in general tell you anything about second moments $W_{ni}^{2}$.
+Here we have special extra information, however. For one, we already
+have assumed that $Pg^{2}=\expect\left[g^{2}\left(X_{i}\right)\right]$
+is finite. We also have that $\expect\left[W_{ni}^{2}\right]=O\left(N^{-1}\right),$
+since
+\begin{align*}
+\expect\left[\left(\frac{1}{2}W_{ni}+1\right)^{2}\right] & =\expect\left[\frac{p_{n}\left(X_{i}\right)}{p\left(X_{i}\right)}\right]\\
+ & =\int\frac{p_{n}\left(X_{i}\right)}{p\left(X_{i}\right)}p\left(X_{i}\right)d\mu\\
+ & =1,
+\end{align*}
+and that also
+\begin{align*}
+\expect\left[\left(\frac{1}{2}W_{ni}+1\right)^{2}\right] & =\frac{1}{4}\expect\left[W_{ni}^{2}\right]+\expect\left[W_{ni}\right]+1\\
+ & =\frac{1}{4}\expect\left[W_{ni}^{2}\right]+1+O\left(n^{-1}\right)\textrm{ (Second line of Eq. 7.3)}\\
+\Rightarrow\expect\left[W_{ni}^{2}\right] & =O\left(n^{-1}\right).
+\end{align*}
+
+We can thus write
+\begin{align*}
+\expect\left[nW_{ni}^{2}-g^{2}\left(X_{i}\right)\right]^{2} & =\expect\left[\left(\sqrt{n}W_{ni}-g\left(X_{i}\right)\right)\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)\right]^{2}\\
+ & \le\expect\left[\left(\sqrt{n}W_{ni}-g\left(X_{i}\right)\right)^{2}\right]\expect\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right]\textrm{ (Cauchy-Schwartz)}\\
+ & =o\left(1\right)\expect\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right].\textrm{ (First line of Eq. 7.3)}
+\end{align*}
+
+We now need to show that $\expect\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right]$
+does not diverge, which follows from Cauchy Schwartz and the bounds
+on $\expect\left[g^{2}\left(X_{i}\right)\right]$ and $\expect\left[W_{ni}^{2}\right]$:
+\begin{align*}
+\expect\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right] & =n\expect\left[W_{ni}^{2}\right]+\expect\left[g^{2}\left(X_{i}\right)\right]+2\sqrt{n}\expect\left[W_{ni}g\left(X_{i}\right)\right]\\
+ & =O\left(1\right)+2\sqrt{n}\expect\left[W_{ni}g\left(X_{i}\right)\right]\\
+ & \le O\left(1\right)+2\sqrt{n\expect\left[W_{ni}^{2}\right]\expect\left[g^{2}\left(X_{i}\right)\right]}\\
+ & =O\left(1\right).
+\end{align*}
+We thus have that $\expect\left[nW_{ni}^{2}-g^{2}\left(X_{i}\right)\right]^{2}=o\left(1\right)$,
+which is what we wanted to show.
+\end{document}
