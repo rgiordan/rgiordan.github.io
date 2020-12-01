@@ -20,7 +20,7 @@ interests include variational methods, Bayesian robustness, sensitivity
 analysis, open software.  I also have an amateur interest in the philosophy of
 science.
 
-[Here is my most recent resume.](/assets/giordano_resume_20190725.pdf)
+[Here is my most recent resume.](/assets/giordano_resume_20201201.pdf)
 
 ---
 
