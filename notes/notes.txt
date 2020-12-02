@@ -38,3 +38,12 @@ $1\n$$$$\\begin{aligned}
 $\\end{aligned}$$$$\n\n$1
 
 \{\#[^\}]+\}
+
+
+This post is a continuation of the previous post about van der Vaart's Theorem
+7.2 {% post_url 2020-08-07-vdv_thm_7_2.md %}.  As before, these are just my
+personal notes, with no guarantee of correctness nor insight.  (In fact, if
+you're reading this and find an error or misunderstanding, I would love to hear
+from you!)
+
+{% post_url 2020-08-07-vdv_thm_7_2.md %}
