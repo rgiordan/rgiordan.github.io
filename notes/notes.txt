@@ -36,3 +36,5 @@ $1\n$$$$\\begin{aligned}
 
 \\end\{aligned\}\$\$([^\n])
 $\\end{aligned}$$$$\n\n$1
+
+\{\#[^\}]+\}
