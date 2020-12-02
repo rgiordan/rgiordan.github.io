@@ -20,3 +20,19 @@ http://jmcglone.com/guides/github-pages/
 bundle exec ... # Run a command using the Gemfile in the current directory
 bundle exec jekyll build    # Build the site into _site
 bundle exec jekyll serve    # Serve the site locally for previewing
+
+To convert from latex to markdown, you can use
+
+pandoc -s example4.tex -o example5.md
+
+To double the dollar signs, you can search and replace with the
+obnoxious-looking regexps
+
+([^\$])\$([^\s\$]+)\$([^\$])
+$1$$$$$2$$$$$3
+
+([^\n])\$\$\\begin\{aligned\}
+$1\n$$$$\\begin{aligned}
+
+\\end\{aligned\}\$\$([^\n])
+$\\end{aligned}$$$$\n\n$1
