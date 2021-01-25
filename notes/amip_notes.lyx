@@ -1,0 +1,190 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\thetahat}{\hat{\theta}}
+{\hat{\theta}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Generally, we're interested in a statistic, 
+\begin_inset Formula $\hat{\theta}\left(x\right)$
+\end_inset
+
+, which depends on the data in some complicated way.
+ When we form a linear approximation to the dependence on the data, we effective
+ly are using the linearity of the derivative to approximate 
+\begin_inset Formula $\hat{\theta}\left(x\right)$
+\end_inset
+
+ with a sum of small data changes, and sums are easy to understand.
+ Our approach to robustness thus has two parts: first, we show that the
+ linear approximation is good, and second, we try to understand the robustness
+ 
+\begin_inset Formula $\hat{\theta}\left(x\right)$
+\end_inset
+
+ by understanding the linear approximation.
+ And understanding the linear approximation amounts to understanding the
+ robustness properties of simple sums.
+ So let's think about sums.
+\end_layout
+
+\begin_layout Standard
+Suppose we have scalar data 
+\begin_inset Formula $x=\left(x_{1},...,x_{N}\right)$
+\end_inset
+
+ and are interested in 
+\begin_inset Formula 
+\begin{align*}
+\thetahat\left(x\right) & =\sum_{n=1}^{N}x_{n}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Without loss of generality, let's take 
+\begin_inset Formula $\hat{\theta}\left(x\right)=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+First, let's think of gross outlier robustness for this sum.
+ Suppose we take 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and replace it with 
+\begin_inset Formula $\tilde{x}_{1}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $x_{-1}$
+\end_inset
+
+ denote 
+\begin_inset Formula $x$
+\end_inset
+
+ with the first datapoint left out.
+ Then
+\begin_inset Formula 
+\begin{align*}
+\thetahat\left(\left(\tilde{x}_{1},x_{-1}\right)\right)-\thetahat\left(x\right) & =\tilde{x}_{1}-x_{1}.
+\end{align*}
+
+\end_inset
+
+If we can make 
+\begin_inset Formula $\tilde{x}_{1}$
+\end_inset
+
+ a gross outlier, i.e.
+ make it as different from 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ as we like, what kinds of changes can we induce in 
+\begin_inset Formula $\thetahat$
+\end_inset
+
+? Obviously, we could effect any change we want.
+ The only way to ensure gross outlier robustness is to bound how large 
+\begin_inset Formula $\tilde{x}_{1}$
+\end_inset
+
+ can be.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
