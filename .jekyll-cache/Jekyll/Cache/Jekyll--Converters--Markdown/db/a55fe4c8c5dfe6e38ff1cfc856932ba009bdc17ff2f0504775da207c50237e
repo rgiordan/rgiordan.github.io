@@ -1,0 +1,14 @@
+I"<p>In an early draft of Jonathan Huggins’ and Jeff Miller’s <a href="https://arxiv.org/abs/1912.07104">BayesBag
+paper</a> I learned of a particular ``paradox’’
+in Bayesian model selection, in which different models with precisely equal
+explanatory power are not asymptotically given equal posterior probability by a
+Bayesian posterior.  Rather, the Bayes posterior concentrates entirely on one
+model or the other, though on which model it concetrates is determined by a fair
+coin flip.  In other words, the symmetry between the two equally good models is
+maintained on resampling the data, but the Bayesian posterior uncertainty
+doesn’t seem to adequately represent this symmetry for any particular dataset.
+Apparently the idea goes back to a 1966 paper by Berk (see ibid. for the full
+citation), so I’ve been calling it Berk’s paradox, though I’m not sure that’s
+standard. I found that the following simple decomposition of a log likelihood
+ratio helped me to understand Berk’s paradox, and some other issues besides.</p>
+:ET

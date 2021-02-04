@@ -1,0 +1,6 @@
+I"�<p>In the below notebook, I make a version of <a href="https://github.com/HIPS/autograd/blob/master/examples/neural_net.py">autograd’s very simple neural
+network
+example</a>
+using <a href="https://github.com/rgiordan/paragami">my <code class="language-plaintext highlighter-rouge">paragami</code> package</a> as a more
+readable alternative to <code class="language-plaintext highlighter-rouge">autograd</code>’s <code class="language-plaintext highlighter-rouge">flatten</code> function.</p>
+:ET
