@@ -1,0 +1,57 @@
+I"í<p>I have a question about the conjugate gradient (CG) algorithm in particular, and
+possibly about interative solvers in general.  My main reference here will be
+section 5.1 of <em>Numerical Optimization</em> by Nocedal and Wright (hereafter NW).</p>
+
+<p>Let \(H\) be a symmetric \(D \times D\) positive definite matrix.  All
+lower-case letters will denote \(D\)-vectors.  The conjugate gradient algorithm
+solves the linear system</p>
+
+\[x = H^{-1} a,\]
+
+<p>using only a black-box routine to compute the <em>product</em> \(Hv\) for any vector
+\(v\).  To provide some intuition for how this is possible, note that by
+defining</p>
+
+\[\phi(x) := \frac{1}{2} x^T H x - x^T a,\]
+
+<p>the optimization problem \(\mathrm{argmin}_x \phi(x)\) has the unique solution
+\(H^{-1} a\) (cf NW Equation 5.2).  Furthermore, the gradient of \(phi\) is
+given by</p>
+
+\[\nabla \phi(x) = Hx - a,\]
+
+<p>evaluation of which requires only the matrix-vector product.  Consequently,
+one can perfor gradient descent to solve \(\mathrm{argmin}_x \phi(x)\)
+using only matrix-vector products.  (In fact, this is nearly what CG doesâ€”
+CG performs gradient descent on \(\phi(x)\) with the constraint that the
+search directions are all mutually conjugate with respect to \(H\).)</p>
+
+<p>Now, suppose that you are not actually interested in the full vector \(x\), but
+only in the value of \(x\) in some subspace expressed by an inner product, \(s^T
+x\), where \(s\) is a unit vector.  (This is typically the case in sensitivity
+anaylysis, which is the source of my interest in this question.)  Is there a way
+to monitor the progress of CG for the quantity \(s^T x\)?  No matter how you
+look at it, it seems to me that CG is not set up to answer such a question,
+especially when \(s\) is aligned with a small eigenvalue of \(H\).</p>
+
+<p>Typically, one monitors the convergence of CG using the residual \(Hx - a\). Of
+course, the value of \(s^T (Hx - a)\) tells you little about \(s^T x\) in
+general.  The theoretical guanrantees for CG (as given, for example, in NW
+Theorem 5.5) are given in terms of the norm \(\left\| v\right\|_H^2 := v^T H
+v\).  If \(Hs\) is very small, then it is possible for \(\left\| v\right\|_H^2\)
+to be small but for \(s^T v\) to be very large.  Similarly, it is possible for
+the optimization objective \(\phi(\hat x)\) to be near \(0\) while \(s^T (\hat x -
+H^{-1} a)\) is still very large.</p>
+
+<p>It might be pointed out that calculating \(s^T H^{-1} a\) is equal to
+\(a^T H^{-1} s\), so that the roles of \(a\) and \(s\) are symmetric
+here.</p>
+
+<p>What I believe this comes down to is the obvious-enough fact that an iterative
+method based on products \(Hv\) will not do well for directions \(s\) in which
+\(Hs\) is small.  Of course, in theory and practice we expect our linear
+solvers to work best when the condition number is not too large.  However,
+I would be very interested to know whether there is a practical variant of CG
+that provides a guide for terminating the algorithm if the quantity of interest
+is \(s^T H^{-1}a\) and not \(Hx - a\).</p>
+:ET
