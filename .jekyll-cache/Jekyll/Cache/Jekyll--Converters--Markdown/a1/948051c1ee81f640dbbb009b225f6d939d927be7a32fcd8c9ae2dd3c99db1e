@@ -1,0 +1,10 @@
+I"�<p>I’m going to be speaking next week at <a href="https://mc-stan.org/events/stancon2020/">Stancon
+2020</a> about a project I’ve been trying
+to wrap up this summer: the Bayesian (first-order) infinitesimal jackknife.  The
+idea is very simple: it’s a combination of the Bayesian sensitivity Theorem 1 of
+our <a href="https://arxiv.org/abs/1709.02536">Covariances, Robustness, and Variational Bayes
+paper</a> with the general approach of our <a href="https://arxiv.org/abs/1806.00550">Swiss
+Army Infinitesimal Jackknife paper</a>, applied
+to estimate the frequentist variance as in, say, Section 3.5 of The Influence
+Curve and its Role in Robust Estimation (Hampel, 1974).</p>
+:ET

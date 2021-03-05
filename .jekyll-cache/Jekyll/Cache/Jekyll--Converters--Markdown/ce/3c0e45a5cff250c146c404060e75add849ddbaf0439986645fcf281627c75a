@@ -1,0 +1,368 @@
+I"Za<p>This post is a continuation of the previous post about van der Vaart’s Theorem
+7.2.  As before, these are just my
+personal notes, with no guarantee of correctness nor insight.  (In fact, if
+you’re reading this and find an error or misunderstanding, I would love to hear
+from you!)</p>
+
+<h2 id="notation">Notation</h2>
+
+\[\begin{aligned}
+h &amp; =\sqrt{n}\left(\theta-\theta_{0}\right)=\textrm{Rescaled parameter}\\
+\Pi_{n} &amp; =\textrm{Prior on }h\textrm{ (changes with n because the scaling changes)}\\
+\Pi_{n}^{C} &amp; =\textrm{Prior on }h\textrm{ conditioned on set }C\\
+\bar{H}_{n} &amp; =\sqrt{n}\left(\bar{\Theta}_{n}-\theta_{0}\right)\textrm{ (random variable taking values }h\textrm{)}\\
+P_{\bar{H}_{n}\vert\vec{x}_{n}} &amp; =\textrm{Posterior of rescaled parameter}\\
+P_{\bar{H}_{n}\vert\vec{x}_{n}}^{C} &amp; =\textrm{Posterior of rescaled parameter conditioned on set }C\\
+P_{n,h} &amp; =\textrm{Distribution of the data given that the rescaled parameter is }h\\
+P_{n,C} &amp; =P_{n,h}\textrm{ where }h\textrm{ is averaged over the prior }\Pi_{n}^{C}.$\end{aligned}\]
+
+<p>I find vdV’s notation kind of cumbersome. I kind of hate to do it, but I
+find it much easier to follow vdV’s reasoning in my own notation, which
+is as follows.</p>
+
+\[\begin{aligned}
+\bar{H}_{n} &amp; \rightarrow h\quad\textrm{ (I don't distinguish between the random variable and its values)}\\
+\Pi_{n} &amp; \rightarrow P\left(h\right)\quad\textrm{ (I don't notate the n dependence)}\\
+\Pi_{n}^{C} &amp; \rightarrow P\left(h\vert C\right)\\
+P_{\bar{H}_{n}\vert\vec{x}_{n}} &amp; \rightarrow P\left(h\vert x\right)\\
+P_{\bar{H}_{n}\vert\vec{x}_{n}}^{C} &amp; \rightarrow P\left(h\vert x,C\right)\\
+P_{n,h} &amp; \rightarrow P\left(x\vert h\right)\\
+P_{n,C} &amp; \rightarrow P\left(x\vert C\right)=\int P\left(x\vert h\right)P\left(h\vert C\right)dh.\end{aligned}\]
+
+<h2 id="regions">Regions</h2>
+
+<p>The proof divides the domain of \(h\) (and, equivalently, \(\theta\)) into
+several overlapping regions. I found it helpful to make a list of all
+these different divisions. The main division is</p>
+
+\[\begin{aligned}
+R_{1} &amp; =h:\left\Vert h\right\Vert _{2}\le M_{n}:=C_{n}\\
+R_{23} &amp; =h:\left\Vert h\right\Vert _{2}&gt;M_{n}:=C_{n}^{c}$\end{aligned}\]
+
+<p>for \(M_{n}\rightarrow\infty\). The proof is in two distinct parts: one
+part for \(R_{23}\), which shows that the integral over \(R_{23}\) goes to
+zero by the testability assumption for any \(M_{n}\rightarrow\infty\), and
+one part for \(R_{1}\), which shows that the integral over \(R_{1}\) goes to
+zero for any fixed \(M\), and so for some \(M_{n}\rightarrow\infty\).
+Conceptually, the integral over \(R_{1}\) determines the rate at which
+\(M_{n}\rightarrow\infty\), and the proof for \(R_{23}\) works for that
+particular \(M_{n}\). As long as \(M_{n}\rightarrow\infty\), then \(R_{1}\)
+eventually covers the whole \(h\) space.</p>
+
+<p>Obviously, the rate at which \(M_{n}\) goes to infinity will determine the
+rate at which various parts of the proof go to zero. \(M_{n}\) going to
+infinity fast is good for \(R_{23}\) and bad for \(R_{1}\), and vice-versa.
+Note that the proof does not actually imply that the integral over
+region \(R_{23}\) goes to zero exponentially fast for any
+\(M_{n}\rightarrow\infty\)! On the first term on the RHS of the third
+equation of page 142 is of order \(e^{-n}\). The \(o\left(1\right)\) term is
+not guaranteed to have any particular rate by the proof as-written.
+However, as I will discuss below, I believe you can choose \(M_{n}\)
+carefully so that \(M_{n}\) grows more slowly than \(\sqrt{n}\) but still to
+ensure that this term also goes to zero exponentially fast, though I’m
+not sure I see how to guarantee that such an \(M_{n}\) would work for
+\(R_{1}\).</p>
+
+<p>In the sixth paragraph of page 142, the region \(R_{23}\) is split into
+two regions:</p>
+
+\[\begin{aligned}
+R_{2'} &amp; =h:M_{n}\le\left\Vert h\right\Vert _{2}\le\sqrt{n}D\\
+R_{3'} &amp; =h:\sqrt{n}D\le\left\Vert h\right\Vert _{2}.$\end{aligned}\]
+
+<p>Note that this is the same split as in Lemma 10.3, but with \(D\) instead
+of \(\varepsilon\). Note that \(D\) is chosen to uniformly bound the prior
+in a region of \(\theta_{0}\); \(\varepsilon\) is chosen for different
+reasons as we soon discuss.</p>
+
+<p>Lemma 10.3 also divides \(R_{23}\) into two further regions:</p>
+
+\[\begin{aligned}
+R_{2}= &amp; h:M_{n}\le\left\Vert h\right\Vert _{2}\le\sqrt{n}\varepsilon\\
+R_{3}= &amp; h:\sqrt{n}\varepsilon\le\left\Vert h\right\Vert _{2}\\
+R_{23} &amp; =R_{2}\bigcup R_{3}.\end{aligned}\]
+
+<p>The constant \(\varepsilon\) is chosen to control the first-order Taylor
+series expansion of \(P_{\theta}\dot{\ell}_{\theta_{0}}^{L}\).</p>
+
+<p>Of course, if \(M_{n}\) grows faster than a \(\sqrt{n}\) rate, then \(R_{2}\)
+and \(R_{2'}\) will be empty for sufficiently large \(n\). The division is
+only necessary when \(M_{n}\) grows more slowly than \(\sqrt{n}\). And
+indeed this is the interesting case, as we can see when we consider the
+corresponding regions for \(\theta\):</p>
+
+\[\begin{aligned}
+R_{1} &amp; =\theta:\left\Vert \theta-\theta_{0}\right\Vert _{2}\le\frac{M_{n}}{\sqrt{n}}\\
+R_{2} &amp; =\theta:\frac{M_{n}}{\sqrt{n}}\le\left\Vert \theta-\theta_{0}\right\Vert _{2}\le\varepsilon\\
+R_{3} &amp; =\theta:\varepsilon\le\left\Vert \theta-\theta_{0}\right\Vert .$\end{aligned}\]
+
+<p>Again, recall that the integral over $R_{2}\bigcup R_{3}$ goes to zero
+exponentially fast. If \(M_{n}=o\left(\sqrt{n}\right)\), this means the
+region that defines the integral to any order higher than the integral
+over \(R_{23}\) (which I believe can be made arbitrarily fast) is
+determined by a region in \(\theta\) space that shrinks to a point. If we
+want to do something more interesting with our BCLT than simply show
+convergence in total variation (e.g., to use the Taylor series
+expansions of the relevant terms to develop an asymptotic expansion of a
+posterior expectation), then we need \(R_{1}\) to shrink to zero. So
+slowly growing \(M_{n}\) will be the hard and interesting case.</p>
+
+<h2 id="bottom-of-page-141-for-u-a-ball-of-fixed-radius">Bottom of page 141 “For \(U\), a ball of fixed radius...”</h2>
+
+<p>Recall that \(U\) is the domain of \(h\), so
+\(h\in U\Rightarrow\left\Vert \theta-\theta_{0}\right\Vert \in U/\sqrt{n},\)
+and fixed \(U\) implies a shrinking ball for \(\theta\). Note that
+contiguity will be invoked once for \(R_{23}\) and once for \(R_{1}\). For
+region \(R_{23}\), the region \(U\) is a bit of a red herring, chosen simply
+to swap around the order of integration of an average posterior
+integral. For region \(R_{1}\), the size of \(U\) is given by \(M\), and
+recall that we will require \(M\) to actually go to infinity, so this may
+seem like a sleight of hand. However, the argument will be that the
+integral over \(R_{1}\) goes to zero for fixed \(M\) of any size, and so for
+some sequence \(M_{n}\rightarrow\infty\). But I might observe that \(U\)
+must be allowed to be arbitrarily large.</p>
+
+<p>I think vdV is appealing to the dominated convergence theorem to show
+that
+\(P_{n,h_{n}}\triangleleft\triangleright P_{n,0}\Rightarrow P_{n,U}\triangleleft\triangleright P_{n,0}\),
+since for any indicator function \(A\)</p>
+
+\[\begin{aligned}
+\lim_{n\rightarrow\infty}P_{n,U}A &amp; =\lim_{n\rightarrow\infty}\Pi_{n}^{U}P_{x,h}A\quad\textrm{(Defintion)}\\
+ &amp; =\Pi_{n}^{U}\lim_{n\rightarrow\infty}P_{x,h}A\quad\textrm{(Dominated convergence theorem)}\\
+ &amp; =\Pi_{n}^{U}\lim_{n\rightarrow\infty}P_{x,0}A\quad\textrm{(Contiguity)}\\
+ &amp; =\lim_{n\rightarrow\infty}P_{x,0}A\quad\textrm{(No more h dependence).}$\end{aligned}\]
+
+<p>Now, in my application of the dominated convergence theorem, the measure
+\(\Pi_{n}^{U}\) is actually changing with \(n\), which means we can’t apply
+dominated convergence directly (see the comment on “The integrand
+converges to zero pointwise” below). However, for some \(n\) sufficiently
+large, the density \(\pi_{n}^{U}\) is bounded above and below by
+constants.</p>
+
+<h2 id="top-of-page-142-by-writing-out-the-conditional-densities">Top of page 142, “By writing out the conditional densities...”</h2>
+
+<p>I think this is a tad easier to see in simpler notation. For just this
+section, let $P=P\left(h\vert x\right)$. We want to show that
+conditioning on the set \(C\) can’t make a big difference if the
+probability of \(C\) is small. To show this, we need to split everything
+into \(C\) and \(C^{c}\) and see what we get. Doing this, the first equation
+on page 142 is equivalent to</p>
+
+\[\begin{aligned}
+P\left(B\right)-P\left(B\vert C\right) &amp; =P\left(B\bigcap C\right)+P\left(B\bigcap C^{c}\right)-\frac{P\left(B\bigcap C\right)}{P\left(C\right)}\\
+ &amp; =P\left(B\bigcap C^{c}\right)+\frac{P\left(B\bigcap C\right)}{P\left(C\right)}\left(P\left(C\right)-1\right)\\
+ &amp; =P\left(B\vert C^{c}\right)P\left(C^{c}\right)-\frac{P\left(B\bigcap C\right)}{P\left(C\right)}P\left(C^{c}\right)\\
+ &amp; =\left(P\left(B\vert C^{c}\right)-P\left(B\vert C\right)\right)P\left(C^{c}\right).$\end{aligned}\]
+
+<p>Now,
+$\left|P\left(B\vert C^{c}\right)-P\left(B\vert C\right)\right|\le2$
+(they’re both probabilities, and so each is bounded by \(1\)), which gives
+the second equation on page 142. You can in fact get rid of the factor
+of \(2\) because</p>
+
+\[\begin{aligned}
+P\left(B\vert C^{c}\right)-P\left(B\vert C\right) &amp; \le1\textrm{ and }\\
+-\left(P\left(B\vert C^{c}\right)-P\left(B\vert C\right)\right) &amp; \le1\Rightarrow\\
+\left|P\left(B\vert C^{c}\right)-P\left(B\vert C\right)\right| &amp; \le1.\end{aligned}\]
+
+<h2 id="third-equation-on-page-142">Third equation on page 142</h2>
+
+<p>This is just</p>
+
+\[\begin{aligned}
+P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right) &amp; =P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\left(1-\phi_{n}+\phi_{n}\right)\\
+ &amp; =P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\left(1-\phi_{n}\right)+P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\phi_{n}\\
+ &amp; \le P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\left(1-\phi_{n}\right)+P_{n,U}\phi_{n}.$\end{aligned}\]
+
+<p>Now, we know by assumption that \(P_{n,U}\phi_{n}=o\left(1\right)\), but
+we do not know how fast. So the fact that we show that
+\(P_{n,U}P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\left(1-\phi_{n}\right)\)
+goes to zero exponentially fast does not guarantee that the whole
+integral over \(R_{23}\) goes to zero exponentially fast. Note that Lemma
+10.3 only proves the exponential rate of convergence for
+\(P_{\theta}^{n}\left(1-\phi_{n}\right)\), where
+$\left\Vert \theta-\theta_{0}\right\Vert \ge M_{n}/\sqrt{n}$.</p>
+
+<h2 id="third-equation-on-page-142-for-moments">Third equation on page 142 for moments</h2>
+
+<p>Note that we will have</p>
+
+\[\begin{aligned}
+\int g\left(\theta,x\right)\mathbb{I}\left(\theta&gt;\frac{M_{n}}{\sqrt{n}}\right)p\left(\theta\vert x\right)d\theta &amp; \le\\
+\sqrt{\int g\left(\theta,x\right)^{2}p\left(\theta\vert x\right)d\theta}\sqrt{\int\mathbb{I}\left(\theta&gt;\frac{M_{n}}{\sqrt{n}}\right)p\left(\theta\vert x\right)d\theta} &amp; ,$\end{aligned}\]
+
+<p>so the moments will be controlled
+\(\int\mathbb{I}\left(\theta&gt;\frac{M_{n}}{\sqrt{n}}\right)p\left(\theta\vert x\right)d\theta\)
+by vdV’s \(P_{\bar{H}_{n}\vert\vec{X}_{n}}\left(C_{n}^{c}\right)\) under
+the condition of square integrability.</p>
+
+<h2 id="fourth-equation-on-page-142-manipulating-again-the-expression">Fourth equation on page 142, “Manipulating again the expression...”</h2>
+
+<p>I find this easier to see in my own notation. By re-arranging the order
+of the integrals (i.e. by Fubini’s theorem),</p>
+
+\[\begin{aligned}
+ &amp; P_{n,U}P_{\bar{H}_{n}\vert\vec{x}_{n}}\left(C_{n}^{c}\right)\left(1-\phi_{n}\right)\\
+ &amp; =\int P\left(h\vert U\right)\left(\int P\left(x\vert h\right)\left(\left(1-\phi_{n}\left(x\right)\right)\int P\left(\tilde{h}\vert x\right)\mathbb{I}\left(\tilde{h}\in C_{n}^{c}\right)d\tilde{h}\right)dx\right)dh\\
+ &amp; =\frac{1}{P\left(U\right)}\int\int\int P\left(h\right)\mathbb{I}\left(h\in U\right)P\left(x\vert h\right)\frac{P\left(x\vert\tilde{h}\right)P\left(\tilde{h}\right)}{P\left(x\right)}\mathbb{I}\left(\tilde{h}\in C_{n}^{c}\right)\left(1-\phi_{n}\left(x\right)\right)d\tilde{h}dxdh\\
+ &amp; =\frac{1}{P\left(U\right)}\int\int\int P\left(\tilde{h}\right)\mathbb{I}\left(\tilde{h}\in C_{n}^{c}\right)\frac{P\left(C_{n}^{c}\right)}{P\left(C_{n}^{c}\right)}P\left(x\vert\tilde{h}\right)\left(1-\phi_{n}\left(x\right)\right)\frac{P\left(x\vert h\right)P\left(h\right)\mathbb{I}\left(h\in U\right)}{P\left(x\right)}dhdxd\tilde{h}\\
+ &amp; =\frac{P\left(C_{n}^{c}\right)}{P\left(U\right)}\int P\left(\tilde{h}\vert C_{n}^{c}\right)\left(\int P\left(x\vert\tilde{h}\right)\left(1-\phi_{n}\left(x\right)\right)\left(\int\frac{P\left(x\vert h\right)P\left(h\right)\mathbb{I}\left(h\in U\right)}{P\left(x\right)}dh\right)dx\right)d\tilde{h}\\
+ &amp; =\frac{\Pi_{n}\left(C_{n}^{c}\right)}{\Pi_{n}\left(U\right)}P_{n,C}P_{\bar{H}_{n}\vert\vec{x}_{n}}\left(U\right)\left(1-\phi_{n}\right).$\end{aligned}\]
+
+<p>Basically, the trick of integrating the data distribution over the prior
+allows us to swap a test in \(U\) and a posterior probability of
+\(C_{n}^{c}\) for a posterior probability of \(U\) and a test in
+\(C_{n}^{c}\). I have to say, this is pretty slick. After dropping the
+\(\Pi_{n}\left(C_{n}^{c}\right)\) and
+\(P_{\bar{H}_{n}\vert\vec{x}_{n}}\left(U\right)\) terms (which are bounded
+above by \(1\)) you get an upper bound on
+\(P_{n,U}P_{\bar{H}_{n}\vert\vec{x}_{n}}\left(C_{n}^{c}\right)\) which
+depends only on the prior, which is remarkable.</p>
+
+<p>Note that for this trick to work, the prior must be proper. This is not
+a stated assumption as far as I can see, but I believe it is necessary
+for this argument to go through.</p>
+
+<h2 id="the-integrand-converges-to-zero-pointwise-but-this-is-not-enough">“The integrand converges to zero pointwise, but this is not enough.”</h2>
+
+<p>I would like to hear a professional’s explanation of this comment. Note
+that if the domain and integrating distribution were fixed, then
+pointwise convergence would be enough by the dominated convergence
+theorem, since the integrand is bounded. So I believe the difficulty is
+in the fact that everything you’re integrating over is changing in \(n\).
+If you asked me to guess beforehand whether there is a version of the
+dominated convergence theorem that was capable of dealing with that I
+would probably guess yes, but the fact that vdV goes this route instead
+strongly suggests not.</p>
+
+<h2 id="here-pi_nlefturightis-bounded-below">“Here \(\Pi_{n}\left(U\right)\)...is bounded below...”</h2>
+
+<p>Because \(\theta_{0}+U/\sqrt{n}\) is shrinking, and so eventually
+\(\Pi_{n}\left(U\right)\) is strictly bounded below,
+\(\Pi_{n}\left(U\right)\) is bounded below by a constant times the volume
+of a \(k-\)dimensional sphere of radius \(\sqrt{n}\), which is proportional
+to \(1/\sqrt{n}^{k}\). It is \(k\)-dimensional because
+\(\theta\in\mathbb{R}^{k}\).</p>
+
+<h2 id="the-total-variation-distancecan-be-expressed-in-the-form">“The total variation distance...can be expressed in the form...”</h2>
+
+<p>For two densities \(p\left(\theta\right)\) and \(q\left(\theta\right)\),</p>
+
+\[\begin{aligned}
+\left\Vert P-Q\right\Vert _{TV} &amp; =\int\left|q\left(\theta\right)-p\left(\theta\right)\right|d\theta\\
+ &amp; =\int\left|1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right|q\left(\theta\right)d\theta\\
+ &amp; =\int1\left(p\left(\theta\right)&gt;q\left(\theta\right)\right)\left(\frac{p\left(\theta\right)}{q\left(\theta\right)}-1\right)q\left(\theta\right)d\theta+\\
+ &amp; \quad\int1\left(p\left(\theta\right)\le q\left(\theta\right)\right)\left(1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right)q\left(\theta\right)d\theta\\
+ &amp; =\int\left(1-1\left(p\left(\theta\right)\le q\left(\theta\right)\right)\right)\left(\frac{p\left(\theta\right)}{q\left(\theta\right)}-1\right)q\left(\theta\right)d\theta+\\
+ &amp; \quad\int1\left(p\left(\theta\right)\le q\left(\theta\right)\right)\left(1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right)q\left(\theta\right)d\theta\\
+ &amp; =2\int1\left(p\left(\theta\right)\le q\left(\theta\right)\right)\left(1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right)q\left(\theta\right)d\theta+\\
+ &amp; \quad\int\left(\frac{p\left(\theta\right)}{q\left(\theta\right)}-1\right)q\left(\theta\right)d\theta\\
+ &amp; =2\int\left(1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right)^{+}q\left(\theta\right)d\theta.$\end{aligned}\]
+
+<p>One particularly nice thing about this expression is that the integrand,
+\(\left(1-\frac{p\left(\theta\right)}{q\left(\theta\right)}\right)^{+}\),
+is bounded between \(0\) and \(1\).</p>
+
+<h2 id="it-follows-that-last-equation-on-page-142">“It follows that.…” Last equation on page 142.</h2>
+
+<p>For this section, let
+\(\psi\left(\cdot\right):=dN^{C}\left(\Delta_{n,\theta_{0}},I_{\theta_{0}}^{-1}\right)\left(\cdot\right)\)
+for compactness. Note that the map \(x\mapsto\left(1-x\right)^{+}\) is
+convex. Then the last equation can be written as</p>
+
+\[\begin{aligned}
+\int\left(1-\frac{\psi\left(h\right)\int1_{C}\left(g\right)P\left(x\vert g\right)P\left(g\right)dg}{1_{C}\left(h\right)P\left(x\vert h\right)P\left(h\right)}\right)^{+}P\left(h\vert x,C\right)dh &amp; =\\
+\int\left(1-\int\left(\frac{\psi\left(h\right)}{1_{C}\left(h\right)P\left(x\vert h\right)P\left(h\right)}\frac{1_{C}\left(g\right)P\left(x\vert g\right)P\left(g\right)}{\psi\left(g\right)}\right)\psi\left(g\right)dg\right)^{+}P\left(h\vert x,C\right)dh &amp; \le\\
+\textrm{ (Jensen applied to }\int\left(\cdot\right)\psi\left(g\right)dg\textrm{)}\\
+\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{1_{C}\left(g\right)P\left(x\vert g\right)P\left(g\right)}{1_{C}\left(h\right)P\left(x\vert h\right)P\left(h\right)}\right)^{+}\psi\left(g\right)P\left(h\vert x,C\right)dhdg &amp; =\\
+\textrm{(The indicators are one a.s.}
+    \psi\textrm{ and }P\left(h\vert x,C\right)
+    \textrm{)}
+\\
+\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}\psi\left(g\right)P\left(h\vert x,C\right)dhdg &amp; \le\\
+\textrm{(} \psi\left(g\right) \textrm{is bounded above on }C
+\textrm{)}
+\\
+\left(\sup_{g\in C}\psi\left(g\right)\right)\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}P\left(h\vert x,C\right)1_{C}\left(g\right)dhdg &amp; .\end{aligned}\]
+
+<h2 id="by-the-dominated-convergence-theorem-the-double-integralconverges-to-zero-top-of-page-143">“By the dominated-convergence theorem, the double integral...converges to zero...” Top of page 143</h2>
+
+<p>The final equation on page 142 (also given in the last comment) is a
+function of \(x\). Denote that integral \(I\left(x\right)\), and note that
+the integrand is bounded between \(0\) and \(1\). If
+\(P_{n,C}I\left(x\right)=\int I\left(x\right)P\left(x\vert C\right)dx\rightarrow0\),
+then the integral goes to zero in probability under \(P_{n,C}\) since
+convergence in mean implies convergence in probability. And, by
+contiguity, convergence in \(P_{n,C}\) in probability implies convergence
+in \(P_{n,0}\) in probability.</p>
+
+<p>Now,</p>
+
+\[\begin{aligned}
+\int I\left(x\right)P\left(x\vert C\right)dx &amp; =\int\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}P\left(h\vert x,C\right)P\left(x\vert C\right)1_{C}\left(g\right)dxdhdg\\
+ &amp; =\int\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}\frac{P\left(x\vert h\right)P\left(h\vert C\right)}{P\left(x\vert C\right)}P\left(x\vert C\right)1_{C}\left(g\right)dxdhdg\\
+ &amp; =\int\int\int\left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}P\left(x\vert h\right)P\left(h\vert C\right)1_{C}\left(g\right)dxdhdg.$\end{aligned}\]
+
+<p>Now, I’m not sure I see how this relates to the dominated convergence
+theorem, but suppose that the integrand goes to zero in probability
+according to the integrating measure. Letting \(P^{*}\) denote the
+integrating measure, and denoting the integrand with</p>
+
+\[\begin{aligned}
+I\left(x,g,h\right):= &amp; \left(1-\frac{\psi\left(h\right)}{\psi\left(g\right)}\frac{P\left(x\vert g\right)P\left(g\right)}{P\left(x\vert h\right)P\left(h\right)}\right)^{+}$\end{aligned}\]
+
+<p>this would mean that, for any \(\epsilon\),</p>
+
+\[\begin{aligned}
+P^{*}\left(I\left(x,g,h\right)&gt;\epsilon\right) &amp; =\\
+\int\mathbb{I}\left(I\left(x,g,h\right)&gt;\epsilon\right)dP^{*} &amp; =o\left(n\right),$\end{aligned}\]
+
+<p>Now,</p>
+
+\[\begin{aligned}
+I\left(x,g,h\right) &amp; \le\epsilon+\mathbb{I}\left(I\left(x,g,h\right)&gt;\epsilon\right)\Rightarrow\\
+\int I\left(x,g,h\right)dP^{*} &amp; \le\epsilon+o\left(n\right).$\end{aligned}\]
+
+<p>Since this holds for any \(\epsilon\), it means that
+\(\int I\left(x,g,h\right)dP^{*}\rightarrow0.\)</p>
+
+<h2 id="the-sequence-of-measures-on-the-right-is-continguous-with-respect-to-the-measures-">“...the sequence of measures on the right is continguous with respect to the measures .…”</h2>
+
+<p>This follows from the dominated convergence theorem, since for any set
+indicator \(1_{A}\)</p>
+
+\[\begin{aligned}
+\lim_{n\rightarrow\infty}\int\int\int1_{A}P_{n,h}\left(dx\right)\lambda_{C}\left(dh\right)\lambda_{C}\left(dg\right) &amp; =\\
+\int\int\left(\lim_{n\rightarrow\infty}\int1_{A}P_{n,h}\left(dx\right)\right)\lambda_{C}\left(dh\right)\lambda_{C}\left(dg\right) &amp; =\quad\textrm{(dominated convergence)}\\
+\int\int\left(\lim_{n\rightarrow\infty}\int1_{A}P_{n,0}\left(dx\right)\right)\lambda_{C}\left(dh\right)\lambda_{C}\left(dg\right) &amp; \quad\quad\textrm{(contiguity)}.\end{aligned}\]
+
+<h2 id="the-integrand-converges-to-zero-in-probability-under-the-latter-measure">“The integrand converges to zero in probability under the latter measure...”</h2>
+
+<p>We are finally at the point where we only need to consider the
+probability limit under \(P_{n,0}\) of the integrand. Recall that</p>
+
+\[\begin{aligned}
+\Delta_{n,\theta_{0}} &amp; =I_{\theta_{0}}\left(\frac{1}{\sqrt{n}}\sum_{i=1}^{n}\dot{\ell}_{\theta_{0}}\left(X_{i}\right)\right)\Leftrightarrow\\
+I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}} &amp; =\frac{1}{\sqrt{n}}\sum_{i=1}^{n}\dot{\ell}_{\theta_{0}}\left(X_{i}\right)\end{aligned}\]
+
+<p>Now, letting \(C_{\mathcal{N}}\) be the normalizing constant for the
+normal distribution,</p>
+
+\[\begin{aligned}
+\frac{p_{n,g}\left(\vec{X}_{n}\right)}{dN^{C}\left(\Delta_{n,\theta_{0}},I_{\theta_{0}}^{-1}\right)\left(g\right)} &amp; =\\
+\frac{p_{n,0}\left(\vec{X}_{n}\right)p_{n,g}\left(\vec{X}_{n}\right)}{p_{n,0}\left(\vec{X}_{n}\right)dN^{C}\left(\Delta_{n,\theta_{0}},I_{\theta_{0}}^{-1}\right)\left(g\right)} &amp; =\\
+p_{n,0}\left(\vec{X}_{n}\right)\frac{p_{n,g}\left(\vec{X}_{n}\right)}{p_{n,0}\left(\vec{X}_{n}\right)}\exp\left(\frac{1}{2}g^{T}I_{\theta_{0}}^{-1}g+\frac{1}{2}\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}}-\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}g\right)C_{N} &amp; =\textrm{ (Normal)}\\
+C_{N}p_{n,0}\left(\vec{X}_{n}\right)\exp\left(\frac{1}{\sqrt{n}}\sum_{i=1}^{n}g^{T}\dot{\ell}_{\theta_{0}}\left(X_{i}\right)-\frac{1}{2}g^{T}I_{\theta}g+o_{P_{\theta_{0}}}\left(1\right)\right) &amp; \quad\textrm{(Theorem 7.2)}\\
+\times\exp\left(\frac{1}{2}g^{T}I_{\theta_{0}}^{-1}g+\frac{1}{2}\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}}-\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}g\right) &amp; =\\
+C_{N}p_{n,0}\left(\vec{X}_{n}\right)\exp\left(g^{T}I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}}-\frac{1}{2}g^{T}I_{\theta}g+o_{P_{\theta_{0}}}\left(1\right)\right) &amp; \quad\textrm{(Def of }\Delta_{n,\theta_{0}}\textrm{)}\\
+\times\exp\left(\frac{1}{2}g^{T}I_{\theta_{0}}^{-1}g+\frac{1}{2}\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}}-\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}g\right) &amp; =\\
+C_{N}p_{n,0}\left(\vec{X}_{n}\right)\exp\left(\frac{1}{2}\Delta_{n,\theta_{0}}^{T}I_{\theta_{0}}^{-1}\Delta_{n,\theta_{0}}+o_{P_{\theta_{0}}}\left(1\right)\right) &amp; .$\end{aligned}\]
+
+<p>Since this does not depend on \(g\) except in the
+\(o_{P_{\theta_{0}}}\left(1\right)\) term, everything else cancels in the
+ratio, and</p>
+
+\[\begin{aligned}
+\frac{p_{n,g}\left(\vec{X}_{n}\right)}{dN^{C}\left(\Delta_{n,\theta_{0}},I_{\theta_{0}}^{-1}\right)\left(g\right)}\frac{dN^{C}\left(\Delta_{n,\theta_{0}},I_{\theta_{0}}^{-1}\right)\left(h\right)}{p_{n,h}\left(\vec{X}_{n}\right)} &amp; =\exp\left(o_{P_{\theta_{0}}}\left(1\right)\right).\end{aligned}\]
+:ET

@@ -1,0 +1,176 @@
+I"�$<p>I have gradually come to appreciate how much insight can be found in
+Asymptotic Statistics by van der Vaart’s (henceforth vdV). I have come
+to appreciate this only gradually because I have only gradually become
+able to actually read the damn thing. I am still able to read it only
+with some effort, an effort which is usually worthwhile. But I often
+wish there were some kind of Cliff’s Notes for the book.</p>
+
+<p>In the sections that I read carefully, I fill the margins with notes to make
+things easier for myself the next time I revisit the book. For a few key
+sections I’m finding that these notes need more space than I have (books like
+Asymptotic statistics should be printed with bigger margins). So I thought I’d
+type up the points that I found difficult, and then I thought I might post these
+write-ups here in case someone else also finds them useful. I can’t guarantee
+that my explanations are correct, since I do find this material a little
+difficult at times. And of course, my notes are not going to be adequate for
+everyone, since they are targeted to the areas where I feel personally shaky.
+Also some of my notes are obvious and not insightful, but I’m including them
+because I think I will find them useful the next time I read the proof.  If
+anything here is useful to you I’d be glad, and if you find mistakes I would
+also be happy to hear about them.</p>
+
+<p>For this post I’m going to address the proof of Theorem 7.2. My real
+goal is the proof of Theorem 10.1, which I will leave for a future
+(longer) post, but which relies heavily on Theorem 7.2. I am looking at
+the Cambridge University Press 2007 edition.</p>
+
+<h3 id="definitions">Definitions.</h3>
+
+<p>I find it really useful to have definitions written out in one place
+rather than within the text. So here are the definitions for the proof
+of Theorem 7.2:</p>
+
+\[\begin{aligned}
+I_{\theta} &amp; :=P_{\theta}\dot{\ell}_{\theta}\dot{\ell}_{\theta}^{T}\textrm{ (covariance of the score under }\theta\mathrm{)}\\
+p_{n} &amp; :=p_{\theta+h_{n}/\sqrt{n}}\\
+p &amp; :=p_{\theta}\\
+g &amp; :=h^{T}\dot{\ell}_{\theta}\\
+W_{ni} &amp; :=2\left(\sqrt{\frac{p_{n}}{p\left(X_{i}\right)}}-1\right).
+\end{aligned}\]
+
+<p>Recall that van der Vaart uses the notation that, for a random variable
+\(x\) distributed according to the distribution \(P\),</p>
+
+\[\begin{aligned}
+Px &amp; =\mathbb{E}_{P}\left[x\right]=\int xdP\left(x\right).\end{aligned}\]
+
+<h3 id="the-sequence-h_n">The sequence \(h_n\).</h3>
+
+<p>Theorem 7.2 holds for any \(h_n\) congerving to \(h\), and the log likelihood
+is evaluated at \(\theta + h_n / \sqrt{n}\).  This is as much as to say
+that the theorem holds for any sequence \(\theta_n\) such that
+\(\sqrt{n} (\theta_n - \theta) \rightarrow h\).  Of course, this necessarily
+implies that \(\theta_n \rightarrow \theta\), so that the Theorem only
+governs the behavior of the log likelihood ratio in a neighborhood of
+\(\theta\).  In theorem 10.1, vdV will simply take \(h_n \equiv h\).</p>
+
+<h3 id="by-continuity-of-the-inner-product-third-equation-on-page-94">“By continuity of the inner product...” (third equation on page 94).</h3>
+
+<p>Here, vdV is referring to the inner product between random variables
+which are measurable with respect to the dominating measure, \(\mu\). Let
+\(x\) and \(y\) be two such variables, then the inner product is</p>
+
+\[\begin{aligned}
+\left\langle x,y\right\rangle  &amp; :=\int xyd\mu.
+\end{aligned}\]
+
+<p>This
+inner product defines a Hilbert space that’s referred to as
+\(L_{2}\left(\mu\right)\) (because
+\(\sqrt{\left\langle x,x\right\rangle }=\sqrt{\int x^{2}d\mu}\) is the
+\(L_{2}\) norm of \(x\) and \(\mu\) is the measure with respect to which the
+inner product is taken). Any inner product is continuous in its
+arguments (using its own topology) since</p>
+
+\[\begin{aligned}
+\left\langle x+\epsilon_{n},y+\delta_{n}\right\rangle  &amp; =\left\langle x,y\right\rangle +\left\langle \epsilon_{n},y\right\rangle +\left\langle x,\delta_{n}\right\rangle +\left\langle \epsilon_{n},\delta_{n}\right\rangle \\
+ &amp; \le\left\langle x,y\right\rangle +\left\Vert y\right\Vert _{2}\left\Vert \epsilon_{n}\right\Vert _{2}+\left\Vert x\right\Vert _{2}\left\Vert \delta_{n}\right\Vert _{2}+\left\Vert \epsilon_{n}\right\Vert _{2}\left\Vert \delta_{n}\right\Vert _{2}.\end{aligned}\]
+
+<p>He is using the decomposition</p>
+
+\[\begin{aligned}
+\frac{1}{2}g\sqrt{p} &amp; =\sqrt{n}\left(\sqrt{p_{n}}-\sqrt{p}\right)+\epsilon_{n}\\
+2\sqrt{p} &amp; =\sqrt{p}+\sqrt{p}=\sqrt{p}+\sqrt{p_{n}}+\delta_{n},\end{aligned}\]
+
+<p>where \(\left\Vert \epsilon_{n}\right\Vert _{2}\) and
+\(\left\Vert \delta_{n}\right\Vert _{2}\) both go to zero in
+\(L_{2}\left(\mu\right)\) by Eq. 7.1.</p>
+
+<p>Often in probability you need to use something like the dominated convergence
+theorem to exchange integration and limits like this, but here the inner
+product structure makes things easier.</p>
+
+<h3 id="equation-74">Equation 7.4.</h3>
+
+<p>He has already shown that</p>
+
+\[\begin{aligned}
+\mathbb{E}\left[\sum_{i=1}^{n}W_{ni}+\frac{1}{4}Pg^{2}\right] &amp; =o\left(1\right).\end{aligned}\]
+
+<p>Additionally, recall that</p>
+
+\[\begin{aligned}
+\mathbb{E}\left[\frac{1}{\sqrt{n}}\sum_{i=1}^{n}g\left(X_{i}\right)\right] &amp; =\frac{n}{\sqrt{n}}\mathbb{E}\left[g\right]=0.\end{aligned}\]
+
+<p>Combining gives Equation 7.4.</p>
+
+<h3 id="taylor-expansion-of-the-logarithm-top-of-page-95">Taylor expansion of the logarithm (top of page 95).</h3>
+
+<p>Recall that \(W_{ni}\) are all scalars, so we only need the univariate
+Taylor expansion of \(\log\left(1+z\right)\), which we will evaluate at
+\(z=W_{ni}/2\) and then sum. For \(\left|z\right|&lt;1\), by the intermediate
+value theorem, for some \(0\le\bar{z}\le z\) which is a function of \(z\),</p>
+
+\[\begin{aligned}
+\log\left(1+z\right) &amp; =z-\frac{1}{2}\frac{1}{\left(1+\bar{z}\right)^{2}}z^{2}\\
+ &amp; =z-\frac{1}{2}z^{2}+\frac{1}{2}\left(1-\frac{1}{\left(1+\bar{z}\right)^{2}}\right)z^{2}.\end{aligned}\]
+
+<p>Here, he is taking
+\(R\left(z\right)=\frac{1}{2}\left(1-\frac{1}{\left(1+\bar{z}\right)^{2}}\right)\).
+We don’t know what \(\bar{z}\) is, but we know that</p>
+
+\[\begin{aligned}
+\lim_{z\rightarrow0}R\left(z\right) &amp; =\frac{1}{2}\left(1-\frac{1}{\left(1+\lim_{z\rightarrow0}\bar{z}\right)^{2}}\right)=0,\end{aligned}\]
+
+<p>which is the key property we will need. It is this property that vdV is
+referring to at the end of the proof when saying “By the property of the
+function \(R\)...”</p>
+
+<h3 id="it-is-possible-to-write-nw_ni2g2leftx_irighta_ni">“It is possible to write \(nW_{ni}^{2}=g^{2}\left(X_{i}\right)+A_{ni}\)...”</h3>
+
+<p>At first this flummoxed me, since Eqs. 7.3 and 7.4 shows only
+convergence in probability of a term which is linear in \(W_{ni}\), which
+does not in general tell you anything about second moments \(W_{ni}^{2}\).
+I feel like my justification here is excessive, and I would
+be very interested to hear if there’s a more elegant way to see this result.</p>
+
+<p>Here we have special extra information, however. For one, we already
+have assumed that
+\(Pg^{2}=\mathbb{E}\left[g^{2}\left(X_{i}\right)\right]\) is finite. We
+also have that \(\mathbb{E}\left[W_{ni}^{2}\right]=O\left(N^{-1}\right),\)
+since</p>
+
+<p>\(\begin{aligned}
+\mathbb{E}\left[\left(\frac{1}{2}W_{ni}+1\right)^{2}\right] &amp; =\mathbb{E}\left[\frac{p_{n}\left(X_{i}\right)}{p\left(X_{i}\right)}\right]\\
+ &amp; =\int\frac{p_{n}\left(X_{i}\right)}{p\left(X_{i}\right)}p\left(X_{i}\right)d\mu\\
+ &amp; =1,\end{aligned}\) and that also \(\begin{aligned}
+\mathbb{E}\left[\left(\frac{1}{2}W_{ni}+1\right)^{2}\right] &amp; =\frac{1}{4}\mathbb{E}\left[W_{ni}^{2}\right]+\mathbb{E}\left[W_{ni}\right]+1\\
+ &amp; =\frac{1}{4}\mathbb{E}\left[W_{ni}^{2}\right]+1+O\left(n^{-1}\right)\textrm{ (Second line of Eq. 7.3)}\\
+\Rightarrow\mathbb{E}\left[W_{ni}^{2}\right] &amp; =O\left(n^{-1}\right).
+\end{aligned}\)</p>
+
+<p>We can thus write</p>
+
+\[\begin{aligned}
+\mathbb{E}\left[nW_{ni}^{2}-g^{2}\left(X_{i}\right)\right]^{2} &amp; =\mathbb{E}\left[\left(\sqrt{n}W_{ni}-g\left(X_{i}\right)\right)\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)\right]^{2}\\
+ &amp; \le\mathbb{E}\left[\left(\sqrt{n}W_{ni}-g\left(X_{i}\right)\right)^{2}\right]\mathbb{E}\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right]\textrm{ (Cauchy-Schwartz)}\\
+ &amp; =o\left(1\right)\mathbb{E}\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right].\textrm{ (First line of Eq. 7.3)}
+ \end{aligned}\]
+
+<p>We now need to show that
+\(\mathbb{E}\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right]\)
+does not diverge, which follows from Cauchy Schwartz and the bounds on
+\(\mathbb{E}\left[g^{2}\left(X_{i}\right)\right]\) and
+\(\mathbb{E}\left[W_{ni}^{2}\right]\):</p>
+
+\[\begin{aligned}
+\mathbb{E}\left[\left(\sqrt{n}W_{ni}+g\left(X_{i}\right)\right)^{2}\right] &amp; =n\mathbb{E}\left[W_{ni}^{2}\right]+\mathbb{E}\left[g^{2}\left(X_{i}\right)\right]+2\sqrt{n}\mathbb{E}\left[W_{ni}g\left(X_{i}\right)\right]\\
+ &amp; =O\left(1\right)+2\sqrt{n}\mathbb{E}\left[W_{ni}g\left(X_{i}\right)\right]\\
+ &amp; \le O\left(1\right)+2\sqrt{n\mathbb{E}\left[W_{ni}^{2}\right]\mathbb{E}\left[g^{2}\left(X_{i}\right)\right]}\\
+ &amp; =O\left(1\right).
+ \end{aligned}\]
+
+<p>We thus have that
+\(\mathbb{E}\left[nW_{ni}^{2}-g^{2}\left(X_{i}\right)\right]^{2}=o\left(1\right)\),
+which is what we wanted to show.</p>
+:ET

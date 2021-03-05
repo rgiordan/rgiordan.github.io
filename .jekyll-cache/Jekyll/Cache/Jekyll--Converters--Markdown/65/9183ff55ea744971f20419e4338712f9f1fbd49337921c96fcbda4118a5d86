@@ -1,0 +1,62 @@
+I"�<p>I’m going to be speaking next week at <a href="https://mc-stan.org/events/stancon2020/">Stancon
+2020</a> about a project I’ve been trying
+to wrap up this summer: the Bayesian (first-order) infinitesimal jackknife.  The
+idea is very simple: it’s a combination of the Bayesian sensitivity Theorem 1 of
+our <a href="https://arxiv.org/abs/1709.02536">Covariances, Robustness, and Variational Bayes
+paper</a> with the general approach of our <a href="https://arxiv.org/abs/1806.00550">Swiss
+Army Infinitesimal Jackknife paper</a>, applied
+to estimate the frequentist variance as in, say, Section 3.5 of The Influence
+Curve and its Role in Robust Estimation (Hampel, 1974).</p>
+
+<p>To be concrete, let \(\theta \in \mathbb{R}^D\) be a real-valued
+parameter, \(\ell(x_n | \theta)\) be the log likelihood of datapoint \(x_n\),
+and \(w_n \in \mathbb{R}\) be scalar-valued weights for \(n = 1, \ldots, N\),
+with \(w = (w_1, \ldots, w_N)\) and \(x = (x_1, \ldots, x_N)\).
+We can define the weighted loglikleihood by</p>
+
+\[L(x | \theta, w) := \sum_{n=1}^N w_n \ell(x_n \vert \theta),\]
+
+<p>and form the weighted posterior</p>
+
+\[p(\theta \vert x, w) \propto \int \exp(L(x | \theta, w)) p(\theta).\]
+
+<p>Then the Bayesian empirical influence function for the posterior expectation
+\(\mathbb{E}[\theta | x, w]\) is given by</p>
+
+\[\psi_n := N \frac{d \mathbb{E}[\theta | x, w]}{ d w_n} \Biggr\vert_{w_n = 1}
+= N \mathrm{Cov}(\theta, \ell(x_n \vert \theta)),\]
+
+<p>where the final equality is given by Theorem 1 of
+our <a href="https://arxiv.org/abs/1709.02536">Covariances, Robustness, and Variational Bayes
+paper</a>.</p>
+
+<p>The point is just that the empirical influence function of a Bayesian posterior
+expectation can be computed easily from a single run of MCMC samples.  And thus,
+so can everything that an influence function is useful for, including
+the infiniteismal jackknife estimate of variance:</p>
+
+\[\mathrm{Var}_x \left( \mathbb{E}[\theta | x] \right) \approx
+\frac{1}{N} \sum_{n=1}^N \psi_n^2 -
+\left(\frac{1}{N} \sum_{n=1}^N \psi_n \right)^2\]
+
+<p>wher the outermost variance is taken over the data, \(x\).  At Stancon
+I’ll emphasize using this variance estimate as a replacement for the bootstrap
+when detecting or accomodating misspecification in Bayesian models,
+but of course you could also use it for, say approximate leave-k-out
+cross validation, just as in our <a href="https://arxiv.org/abs/1806.00550">Swiss
+Army Infinitesimal Jackknife paper</a>.</p>
+
+<p>The hard part about this has been proving that it works, and it’s been hard
+because I seem to need a version of the Bayesian central limit theorem (BCLT,
+also known as the Bernstein-von Mises theorem) that keeps track of the data
+dependence of ther residaul of the leading order expansion of a posterior
+expectation.  Learning how the BCLT proofs work has been a work me (and happens
+to be the reason why I’m posting about van der Vaardt). I have what I believe is
+a valid proof that I hope to put up on the arxiv soon.</p>
+
+<p>However, you probably don’t need the proof to convince yourself
+that this works and try it out.  I’ll show some examples at Stancon,
+but you can also take a look at some of the functionality I’ve implemented
+in our <a href="https://github.com/rgiordan/StanSensitivity">rstansensitivity</a>
+package.</p>
+:ET

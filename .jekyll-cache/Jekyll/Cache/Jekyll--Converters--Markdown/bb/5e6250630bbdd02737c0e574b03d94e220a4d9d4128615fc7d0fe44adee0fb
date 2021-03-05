@@ -1,0 +1,9 @@
+I"@<p>Over the course of two posts, I’d like to provide an intuitive walk-through of a
+proof of the Bayesian central limit theorem (BCLT, aka the Bernstein-von Mises
+theorem).  I think most statisticans can probably sketch the arguments leading
+to the asymptotic normality of the maximum likelihood estimator off the
+top of their head, but I suspect that few could do the same for the BCLT.
+I, at least, found a lot of the BCLT literature a bit intimidating and short
+on intuition.  But there’s intuition to be had, and I’d like to take a stab
+at providing some of it.</p>
+:ET
