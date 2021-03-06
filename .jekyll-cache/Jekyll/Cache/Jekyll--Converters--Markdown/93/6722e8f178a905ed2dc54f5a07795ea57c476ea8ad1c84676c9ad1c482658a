@@ -1,0 +1,43 @@
+I"N<h1 id="biography">Biography</h1>
+
+<p><img src="/assets/images/ryan_portrait_2019.jpg" alt="drawing" width="100" align="left" hspace="10" /></p>
+
+<p>I am currently a statistics postdoc in Tamara Broderick’s group at MIT. I
+received my PhD in statistics from UC Berkeley, where I was advised by Michael
+Jordan, Tamara Broderick, and Jon McAuliffe. I’ve additionally earned an MSc
+with distinction in econometrics and mathematical economics from the London
+School of Economics and undergraduate degrees in mathematics and theoretical and
+applied mechanics from the University of Illinois in Urbana-Champaign. In
+between studies, I have worked as an engineer for Google and HP and served as an
+education volunteer in the US Peace Corps in Kazakhstan. My current research
+interests include variational methods, Bayesian robustness, sensitivity
+analysis, open software.  I also have an amateur interest in the philosophy of
+science.</p>
+
+<p><a href="/assets/giordano_resume_20210305.pdf">Here is my most recent resume.</a></p>
+
+<hr />
+
+<h1 id="peer-reviewed-publications">Peer-Reviewed Publications</h1>
+
+<div id="refs" class="references">
+<div id="ref-giordano:2015:lrvb">
+<p>Giordano, R. J., T. Broderick, and M. I. Jordan. 2015. “Linear Response Methods for Accurate Covariance Estimates from Mean Field Variational Bayes.” In <em>Advances in Neural Information Processing Systems</em>, 1441–9.</p>
+</div>
+<div id="ref-giordano:2019:ij">
+<p>Giordano, R., W. Stephenson, R. Liu, M. I. Jordan, and T. Broderick. 2019. “A Swiss Army Infinitesimal Jackknife.” In <em>The 22nd International Conference on Artificial Intelligence and Statistics</em>, 1139–47.</p>
+</div>
+<div id="ref-giordano:2017:covariances">
+<p>Giordano, Ryan, Tamara Broderick, and Michael I. Jordan. 2018. “Covariances, Robustness, and Variational Bayes.” <em>Journal of Machine Learning Research</em> 19 (51): 1–49. <a href="http://jmlr.org/papers/v19/17-670.html" class="uri">http://jmlr.org/papers/v19/17-670.html</a>.</p>
+</div>
+<div id="ref-regier:2018:cataloging">
+<p>Regier, J., K. Pamnany, K. Fischer, A. Noack, M. Lam, J. Revels, S. Howard, R. Giordano, D. Schlegel, and J. McAuliffe. 2018. “Cataloging the Visible Universe Through Bayesian Inference at Petascale.” In <em>2018 Ieee International Parallel and Distributed Processing Symposium (Ipdps)</em>, 44–53. IEEE.</p>
+</div>
+<div id="ref-winther:2015:mind">
+<p>Winther, R., R. Giordano, M. Edge, and R. Nielsen. 2015. “The Mind, the Lab, and the Field: Three Kinds of Populations in Scientific Practice.” <em>Studies in History and Philosophy of Science Part C: Studies in History and Philosophy of Biological and Biomedical Sciences</em> 52. Elsevier: 12–21.</p>
+</div>
+</div>
+
+<p>Workshop publications and working drafts can be found
+<a href="https://arxiv.org/find/stat/1/au:+Giordano_R/0/1/0/all/0/1">on my arxiv page</a>.</p>
+:ET
